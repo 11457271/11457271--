@@ -6,93 +6,21 @@
 <title>我的家鄉——胡志明市七日遊</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:"Microsoft JhengHei",Arial,sans-serif;
-  background:#eef4ff;
-  color:#1f2937;
-}
-.page{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:22px;
-}
-.cover{
-  background:
-  linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)),
-  url("https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&w=1600&auto=format&fit=crop");
-  background-size:cover;
-  background-position:center;
-  color:white;
-  text-align:center;
-}
-.card{
-  width:100%;
-  max-width:950px;
-  background:rgba(255,255,255,.96);
-  border-radius:24px;
-  padding:34px;
-  box-shadow:0 18px 45px rgba(0,0,0,.18);
-}
-.cover .card{
-  background:rgba(0,0,0,.45);
-  border:1px solid rgba(255,255,255,.25);
-}
-h1{
-  font-size:44px;
-  margin:0 0 18px;
-  color:#fff;
-}
-h2{
-  font-size:30px;
-  color:#1e3a8a;
-  margin-top:0;
-}
+body{margin:0;font-family:"Microsoft JhengHei",Arial,sans-serif;background:#eef4ff;color:#1f2937}
+.page{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:22px}
+.cover{background:linear-gradient(135deg,#1e3a8a,#f97316);color:white;text-align:center}
+.card{width:100%;max-width:950px;background:rgba(255,255,255,.96);border-radius:24px;padding:34px;box-shadow:0 18px 45px rgba(0,0,0,.18)}
+.cover .card{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25)}
+h1{font-size:44px;margin:0 0 18px;color:white}
+h2{font-size:30px;color:#1e3a8a;margin-top:0}
 .cover h2{color:white}
-p,li{
-  font-size:20px;
-  line-height:1.85;
-}
-.info{
-  background:#f8fafc;
-  border-left:6px solid #2563eb;
-  padding:14px 18px;
-  border-radius:12px;
-  margin:16px 0;
-}
-.cover .info{
-  background:rgba(255,255,255,.15);
-  border-left:6px solid #facc15;
-}
-.photo{
-  width:100%;
-  height:330px;
-  object-fit:cover;
-  border-radius:18px;
-  margin:18px 0;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
-}
-.score{
-  font-weight:bold;
-  color:#b45309;
-  font-size:18px;
-  margin-bottom:12px;
-}
-button{
-  width:100%;
-  border:none;
-  border-radius:16px;
-  padding:16px 18px;
-  margin:10px 0;
-  background:#2563eb;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
-  text-align:left;
-}
+p,li{font-size:20px;line-height:1.85}
+.info{background:#f8fafc;border-left:6px solid #2563eb;padding:14px 18px;border-radius:12px;margin:16px 0}
+.cover .info{background:rgba(255,255,255,.15);border-left:6px solid #facc15}
+.photo{width:100%;height:330px;border-radius:18px;margin:18px 0;box-shadow:0 8px 25px rgba(0,0,0,.18);overflow:hidden;background:#e5e7eb}
+.photo svg{width:100%;height:100%;display:block}
+.score{font-weight:bold;color:#b45309;font-size:18px;margin-bottom:12px}
+button{width:100%;border:none;border-radius:16px;padding:16px 18px;margin:10px 0;background:#2563eb;color:white;font-size:18px;font-weight:bold;cursor:pointer;text-align:left}
 button:hover{background:#1d4ed8}
 .cover button{text-align:center;background:#f59e0b;color:#111827}
 .cover button:hover{background:#fbbf24}
@@ -100,12 +28,7 @@ button:hover{background:#1d4ed8}
 .restart:hover{background:#4b5563}
 .good{color:#16a34a;font-weight:bold}
 .bad{color:#dc2626;font-weight:bold}
-.footer{
-  text-align:center;
-  color:#6b7280;
-  font-size:14px;
-  margin-top:20px;
-}
+.footer{text-align:center;color:#6b7280;font-size:14px;margin-top:20px}
 .cover .footer{color:#e5e7eb}
 </style>
 </head>
@@ -113,192 +36,149 @@ button:hover{background:#1d4ed8}
 <div id="app"></div>
 
 <script>
-let score = 0;
-let day = 0;
+let score=0;
+let day=0;
 
-const data = [
-  {
-    title:"第一天：抵達胡志明市",
-    img:"https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&w=1600&auto=format&fit=crop",
-    text:"你剛到胡志明市。第一個想去的地方是？",
-    options:[
-      ["A. 濱城市場", true, "答對了！濱城市場是胡志明市很有名的景點，可以買紀念品，也可以認識當地生活。"],
-      ["B. 回飯店睡覺", false, "休息也重要，但是第一天可以先去認識城市。"],
-      ["C. 一直待在機場", false, "機場不是旅遊景點，應該開始探索胡志明市。"]
-    ]
-  },
-  {
-    title:"第二天：品嚐越南美食",
-    img:"https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?q=80&w=1600&auto=format&fit=crop",
-    text:"來到胡志明市，你最應該品嚐哪一種越南美食？",
-    options:[
-      ["A. 越南河粉 Pho", true, "答對了！河粉是越南很有代表性的美食，也是許多旅客來越南一定會吃的料理。"],
-      ["B. 漢堡", false, "漢堡很好吃，但不是越南特色美食。"],
-      ["C. 披薩", false, "披薩不是越南傳統美食。"]
-    ]
-  },
-  {
-    title:"第三天：認識歷史建築",
-    img:"https://images.unsplash.com/photo-1564659907532-6b5f98c8e70f?q=80&w=1600&auto=format&fit=crop",
-    text:"胡志明市有許多法國殖民時期留下的建築。哪一個是著名景點？",
-    options:[
-      ["A. 西貢聖母大教堂", true, "答對了！西貢聖母大教堂是胡志明市著名的歷史建築。"],
-      ["B. 電影院", false, "電影院不是最有代表性的歷史景點。"],
-      ["C. 百貨公司", false, "百貨公司比較像購物地點，不是歷史建築。"]
-    ]
-  },
-  {
-    title:"第四天：阮惠步行街",
-    img:"https://images.unsplash.com/photo-1594817167086-5cc2251d9b90?q=80&w=1600&auto=format&fit=crop",
-    text:"晚上來到阮惠步行街，你會做什麼？",
-    options:[
-      ["A. 欣賞夜景和散步", true, "答對了！阮惠步行街晚上很熱鬧，適合散步、拍照和看城市夜景。"],
-      ["B. 一直待在飯店", false, "晚上可以出來看看胡志明市的夜景。"],
-      ["C. 不看路一直滑手機", false, "旅遊時要注意安全，也要享受風景。"]
-    ]
-  },
-  {
-    title:"第五天：體驗越南生活",
-    img:"https://images.unsplash.com/photo-1521993117367-b7f70ccd029d?q=80&w=1600&auto=format&fit=crop",
-    text:"胡志明市街上最常看到的交通工具是什麼？",
-    options:[
-      ["A. 機車", true, "答對了！機車是越南城市生活中很常見的交通工具。"],
-      ["B. 雪橇", false, "越南天氣很熱，不會用雪橇。"],
-      ["C. 直升機", false, "直升機不是一般生活交通工具。"]
-    ]
-  },
-  {
-    title:"第六天：越南文化日",
-    img:"https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?q=80&w=1600&auto=format&fit=crop",
-    text:"在越南遇到長輩或老師時，應該怎麼做？",
-    options:[
-      ["A. 有禮貌地打招呼", true, "答對了！越南文化重視禮貌，也很尊重長輩和老師。"],
-      ["B. 不理會", false, "不理會別人是不禮貌的行為。"],
-      ["C. 大聲吵鬧", false, "在公共場合要注意禮貌。"]
-    ]
-  },
-  {
-    title:"第七天：完成旅程",
-    img:"https://images.unsplash.com/photo-1581349485608-9469926a8e5e?q=80&w=1600&auto=format&fit=crop",
-    text:"七日遊最後一天，你想帶什麼回去當紀念？",
-    options:[
-      ["A. 越南咖啡", true, "很好！越南咖啡很有特色，很適合當紀念品。"],
-      ["B. 當地手工紀念品", true, "很好！手工紀念品可以代表胡志明市的文化。"],
-      ["C. 美好的回憶", true, "很好！旅行中最重要的是留下美好的回憶。"]
-    ]
-  }
+const imgs={
+hcm:`<svg viewBox="0 0 950 330" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs>
+<rect width="950" height="330" fill="url(#g)"/><circle cx="770" cy="70" r="42" fill="#facc15"/>
+<rect x="90" y="160" width="70" height="120" fill="#1d4ed8"/><rect x="200" y="130" width="85" height="150" fill="#2563eb"/>
+<rect x="335" y="95" width="95" height="185" fill="#3b82f6"/><rect x="500" y="70" width="80" height="210" fill="#60a5fa"/>
+<rect x="650" y="120" width="95" height="160" fill="#2563eb"/><polygon points="500,70 540,15 580,70" fill="#bfdbfe"/>
+<text x="475" y="310" text-anchor="middle" font-size="30" fill="white" font-weight="bold">胡志明市 Ho Chi Minh City</text>
+</svg>`,
+market:`<svg viewBox="0 0 950 330" xmlns="http://www.w3.org/2000/svg">
+<rect width="950" height="330" fill="#fff7ed"/><rect x="235" y="115" width="480" height="145" fill="#f97316"/>
+<polygon points="200,120 750,120 675,65 275,65" fill="#ea580c"/><rect x="445" y="58" width="60" height="202" fill="#fed7aa"/>
+<circle cx="475" cy="105" r="30" fill="white"/><line x1="475" y1="105" x2="475" y2="83" stroke="#111827" stroke-width="4"/><line x1="475" y1="105" x2="492" y2="112" stroke="#111827" stroke-width="4"/>
+<rect x="280" y="170" width="80" height="90" fill="#7c2d12"/><rect x="590" y="170" width="80" height="90" fill="#7c2d12"/>
+<text x="475" y="305" text-anchor="middle" font-size="32" fill="#9a3412" font-weight="bold">濱城市場 Ben Thanh Market</text>
+</svg>`,
+pho:`<svg viewBox="0 0 950 330" xmlns="http://www.w3.org/2000/svg">
+<rect width="950" height="330" fill="#fef3c7"/><ellipse cx="475" cy="190" rx="270" ry="90" fill="#ffffff"/><ellipse cx="475" cy="180" rx="225" ry="62" fill="#f59e0b"/>
+<path d="M300 180 C380 130,430 220,520 165 S675 170,700 190" fill="none" stroke="#fff7ed" stroke-width="18"/>
+<circle cx="360" cy="174" r="14" fill="#16a34a"/><circle cx="545" cy="192" r="14" fill="#16a34a"/><circle cx="630" cy="162" r="14" fill="#16a34a"/>
+<rect x="690" y="75" width="42" height="170" fill="#92400e" transform="rotate(25 690 75)"/>
+<rect x="735" y="70" width="42" height="175" fill="#92400e" transform="rotate(25 735 70)"/>
+<text x="475" y="55" text-anchor="middle" font-size="34" fill="#92400e" font-weight="bold">西貢美食：越南河粉 Pho</text>
+</svg>`,
+cathedral:`<svg viewBox="0 0 950 330" xmlns="http://www.w3.org/2000/svg">
+<rect width="950" height="330" fill="#dbeafe"/><rect x="275" y="110" width="400" height="160" fill="#b91c1c"/>
+<rect x="315" y="60" width="80" height="210" fill="#dc2626"/><rect x="555" y="60" width="80" height="210" fill="#dc2626"/>
+<polygon points="315,60 355,25 395,60" fill="#7f1d1d"/><polygon points="555,60 595,25 635,60" fill="#7f1d1d"/>
+<circle cx="475" cy="165" r="35" fill="#fee2e2"/><rect x="445" y="210" width="60" height="60" fill="#7f1d1d"/>
+<text x="475" y="310" text-anchor="middle" font-size="30" fill="#7f1d1d" font-weight="bold">西貢聖母大教堂 Notre-Dame Cathedral Basilica of Saigon</text>
+</svg>`,
+nguyenhue:`<svg viewBox="0 0 950 330" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#111827"/><stop offset="1" stop-color="#1e3a8a"/></linearGradient></defs>
+<rect width="950" height="330" fill="url(#night)"/><circle cx="760" cy="60" r="30" fill="#fef3c7"/>
+<rect x="110" y="135" width="75" height="145" fill="#2563eb"/><rect x="235" y="105" width="90" height="175" fill="#3b82f6"/>
+<rect x="380" y="150" width="75" height="130" fill="#60a5fa"/><rect x="520" y="95" width="95" height="185" fill="#2563eb"/><rect x="690" y="135" width="85" height="145" fill="#3b82f6"/>
+<circle cx="280" cy="270" r="12" fill="#facc15"/><circle cx="420" cy="270" r="12" fill="#facc15"/><circle cx="570" cy="270" r="12" fill="#facc15"/>
+<text x="475" y="55" text-anchor="middle" font-size="34" fill="white" font-weight="bold">阮惠步行街 Nguyen Hue Walking Street</text>
+</svg>`,
+motorbike:`<svg viewBox="0 0 950 330" xmlns="http://www.w3.org/2000/svg">
+<rect width="950" height="330" fill="#ecfeff"/><rect y="235" width="950" height="95" fill="#64748b"/>
+<circle cx="340" cy="235" r="48" fill="#111827"/><circle cx="610" cy="235" r="48" fill="#111827"/>
+<circle cx="340" cy="235" r="23" fill="#e5e7eb"/><circle cx="610" cy="235" r="23" fill="#e5e7eb"/>
+<path d="M340 235 L440 165 L555 235 L610 235 L530 150 L420 150 Z" fill="#ef4444"/>
+<circle cx="475" cy="90" r="30" fill="#f59e0b"/><path d="M475 120 L445 170 L525 170 Z" fill="#2563eb"/>
+<text x="475" y="55" text-anchor="middle" font-size="34" fill="#0f766e" font-weight="bold">胡志明市機車文化</text>
+</svg>`,
+tet:`<svg viewBox="0 0 950 330" xmlns="http://www.w3.org/2000/svg">
+<rect width="950" height="330" fill="#fef2f2"/><circle cx="475" cy="125" r="65" fill="#ef4444"/>
+<polygon points="475,55 496,100 545,100 505,130 522,178 475,150 428,178 445,130 405,100 454,100" fill="#facc15"/>
+<rect x="275" y="220" width="400" height="55" rx="22" fill="#dc2626"/>
+<text x="475" y="257" text-anchor="middle" font-size="30" fill="white" font-weight="bold">Tết 越南新年</text>
+<text x="475" y="310" text-anchor="middle" font-size="28" fill="#991b1b" font-weight="bold">越南文化與禮貌</text>
+</svg>`,
+landmark:`<svg viewBox="0 0 950 330" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#60a5fa"/><stop offset="1" stop-color="#bfdbfe"/></linearGradient></defs>
+<rect width="950" height="330" fill="url(#sky)"/><circle cx="780" cy="65" r="36" fill="#facc15"/>
+<polygon points="475,25 525,280 425,280" fill="#1e40af"/><rect x="430" y="110" width="90" height="170" fill="#2563eb"/>
+<rect x="180" y="175" width="80" height="105" fill="#3b82f6"/><rect x="670" y="150" width="95" height="130" fill="#3b82f6"/>
+<rect y="280" width="950" height="50" fill="#166534"/>
+<text x="475" y="315" text-anchor="middle" font-size="30" fill="white" font-weight="bold">Landmark 81・胡志明市現代地標</text>
+</svg>`
+};
+
+const data=[
+{title:"第一天：抵達胡志明市",img:"hcm",text:"你剛到胡志明市。第一個想去的地方是？",options:[["A. 濱城市場",true,"答對了！濱城市場是胡志明市很有名的景點，可以買紀念品，也可以認識當地生活。"],["B. 回飯店睡覺",false,"休息也重要，但是第一天可以先去認識城市。"],["C. 一直待在機場",false,"機場不是旅遊景點，應該開始探索胡志明市。"]]},
+{title:"第二天：品嚐越南美食",img:"pho",text:"來到胡志明市，你最應該品嚐哪一種越南美食？",options:[["A. 越南河粉 Pho",true,"答對了！河粉是越南很有代表性的美食，也是許多旅客來越南一定會吃的料理。"],["B. 漢堡",false,"漢堡很好吃，但不是越南特色美食。"],["C. 披薩",false,"披薩不是越南傳統美食。"]]},
+{title:"第三天：認識歷史建築",img:"cathedral",text:"胡志明市有許多法國殖民時期留下的建築。哪一個是著名景點？",options:[["A. 西貢聖母大教堂",true,"答對了！西貢聖母大教堂是胡志明市著名的歷史建築。"],["B. 電影院",false,"電影院不是最有代表性的歷史景點。"],["C. 百貨公司",false,"百貨公司比較像購物地點，不是歷史建築。"]]},
+{title:"第四天：阮惠步行街",img:"nguyenhue",text:"晚上來到阮惠步行街，你會做什麼？",options:[["A. 欣賞夜景和散步",true,"答對了！阮惠步行街晚上很熱鬧，適合散步、拍照和看城市夜景。"],["B. 一直待在飯店",false,"晚上可以出來看看胡志明市的夜景。"],["C. 不看路一直滑手機",false,"旅遊時要注意安全，也要享受風景。"]]},
+{title:"第五天：體驗越南生活",img:"motorbike",text:"胡志明市街上最常看到的交通工具是什麼？",options:[["A. 機車",true,"答對了！機車是越南城市生活中很常見的交通工具。"],["B. 雪橇",false,"越南天氣很熱，不會用雪橇。"],["C. 直升機",false,"直升機不是一般生活交通工具。"]]},
+{title:"第六天：越南文化日",img:"tet",text:"在越南遇到長輩或老師時，應該怎麼做？",options:[["A. 有禮貌地打招呼",true,"答對了！越南文化重視禮貌，也很尊重長輩和老師。"],["B. 不理會",false,"不理會別人是不禮貌的行為。"],["C. 大聲吵鬧",false,"在公共場合要注意禮貌。"]]},
+{title:"第七天：完成旅程",img:"landmark",text:"七日遊最後一天，你想帶什麼回去當紀念？",options:[["A. 越南咖啡",true,"很好！越南咖啡很有特色，很適合當紀念品。"],["B. 當地手工紀念品",true,"很好！手工紀念品可以代表胡志明市的文化。"],["C. 美好的回憶",true,"很好！旅行中最重要的是留下美好的回憶。"]]}
 ];
 
+function img(name){return `<div class="photo">${imgs[name]}</div>`;}
 function cover(){
-  score = 0;
-  day = 0;
-  document.getElementById("app").innerHTML = `
-  <div class="page cover">
-    <div class="card">
-      <h1>我的家鄉——胡志明市七日遊</h1>
-      <h2>歡迎來到越南最大的城市——胡志明市！</h2>
-      <p>胡志明市是越南的經濟、文化和旅遊中心，也是一座充滿活力的現代城市。</p>
-      <p>在這個遊戲中，你將跟著我一起展開七天的旅程，認識胡志明市著名的景點、美食、文化與生活方式。</p>
-      <div class="info">
-        <p><b>學生：</b>武紅銀</p>
-        <p><b>學號：</b>11457271</p>
-        <p><b>課程：</b>運算思維與程式設計</p>
-      </div>
-      <button onclick="intro()">開始七日遊</button>
-      <div class="footer">期末學習故事・互動式旅遊遊戲</div>
-    </div>
-  </div>`;
+score=0;day=0;
+document.getElementById("app").innerHTML=`
+<div class="page cover"><div class="card">
+<h1>我的家鄉——胡志明市七日遊</h1>
+${img("hcm")}
+<h2>歡迎來到越南最大的城市——胡志明市！</h2>
+<p>胡志明市是越南的經濟、文化和旅遊中心，也是一座充滿活力的現代城市。</p>
+<p>在這個遊戲中，你將跟著我一起展開七天的旅程，認識胡志明市著名的景點、美食、文化與生活方式。</p>
+<div class="info"><p><b>學生：</b>武紅銀</p><p><b>學號：</b>11457271</p><p><b>課程：</b>運算思維與程式設計</p></div>
+<button onclick="intro()">開始七日遊</button>
+<div class="footer">期末學習故事・互動式旅遊遊戲</div>
+</div></div>`;
 }
-
 function intro(){
-  document.getElementById("app").innerHTML = `
-  <div class="page">
-    <div class="card">
-      <h2>遊戲說明</h2>
-      <img class="photo" src="https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1600&auto=format&fit=crop">
-      <p><b>學習目標：</b>希望玩家透過七日遊，了解胡志明市的特色景點、越南美食、交通文化與生活禮貌。</p>
-      <p><b>玩法：</b>每一天會出現一個問題。答對加10分，答錯加0分。最後會依照分數得到不同結局。</p>
-      <p><b>滿分：</b>70分</p>
-      <button onclick="showQuestion()">開始挑戰</button>
-      <div class="footer">武紅銀 11457271</div>
-    </div>
-  </div>`;
+document.getElementById("app").innerHTML=`
+<div class="page"><div class="card">
+<h2>遊戲說明</h2>${img("market")}
+<p><b>學習目標：</b>希望玩家透過七日遊，了解胡志明市的特色景點、越南美食、交通文化與生活禮貌。</p>
+<p><b>玩法：</b>每一天會出現一個問題。答對加10分，答錯加0分。最後會依照分數得到不同結局。</p>
+<p><b>滿分：</b>70分</p>
+<button onclick="showQuestion()">開始挑戰</button>
+<div class="footer">武紅銀 11457271</div>
+</div></div>`;
 }
-
 function showQuestion(){
-  const q = data[day];
-  let options = "";
-  q.options.forEach((item, index)=>{
-    options += `<button onclick="answer(${index})">${item[0]}</button>`;
-  });
-  document.getElementById("app").innerHTML = `
-  <div class="page">
-    <div class="card">
-      <div class="score">目前分數：${score}分</div>
-      <h2>${q.title}</h2>
-      <img class="photo" src="${q.img}">
-      <p>${q.text}</p>
-      ${options}
-      <div class="footer">第 ${day+1} 天 / 共 7 天</div>
-    </div>
-  </div>`;
+const q=data[day];
+let ops="";
+q.options.forEach((op,i)=>{ops+=`<button onclick="answer(${i})">${op[0]}</button>`});
+document.getElementById("app").innerHTML=`
+<div class="page"><div class="card">
+<div class="score">目前分數：${score}分</div>
+<h2>${q.title}</h2>${img(q.img)}
+<p>${q.text}</p>${ops}
+<div class="footer">第 ${day+1} 天 / 共 7 天</div>
+</div></div>`;
 }
-
-function answer(index){
-  const q = data[day];
-  const option = q.options[index];
-  const correct = option[1];
-  if(correct){score += 10;}
-  document.getElementById("app").innerHTML = `
-  <div class="page">
-    <div class="card">
-      <div class="score">目前分數：${score}分</div>
-      <h2 class="${correct ? 'good' : 'bad'}">${correct ? '答對了！+10分' : '答錯了！+0分'}</h2>
-      <img class="photo" src="${q.img}">
-      <p>${option[2]}</p>
-      <button onclick="nextDay()">下一天</button>
-    </div>
-  </div>`;
+function answer(i){
+const q=data[day], op=q.options[i], correct=op[1];
+if(correct)score+=10;
+document.getElementById("app").innerHTML=`
+<div class="page"><div class="card">
+<div class="score">目前分數：${score}分</div>
+<h2 class="${correct?'good':'bad'}">${correct?'答對了！+10分':'答錯了！+0分'}</h2>
+${img(q.img)}
+<p>${op[2]}</p>
+<button onclick="nextDay()">下一天</button>
+</div></div>`;
 }
-
-function nextDay(){
-  day++;
-  if(day < data.length){
-    showQuestion();
-  }else{
-    ending();
-  }
-}
-
+function nextDay(){day++; if(day<data.length)showQuestion(); else ending();}
 function ending(){
-  let title = "";
-  let text = "";
-  if(score >= 60){
-    title = "最佳結局";
-    text = "恭喜！你完成了胡志明市七日遊，也認識了越南美食、歷史建築、交通文化和當地生活。你已經成為「胡志明市旅遊達人」！";
-  }else if(score >= 40){
-    title = "普通結局";
-    text = "你已經了解胡志明市的大部分特色。下次可以再來探索更多景點和文化。";
-  }else{
-    title = "挑戰結局";
-    text = "你還不太了解胡志明市。沒關係，請重新挑戰，發現更多越南文化吧！";
-  }
-  document.getElementById("app").innerHTML = `
-  <div class="page">
-    <div class="card">
-      <h2>${title}</h2>
-      <img class="photo" src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&w=1600&auto=format&fit=crop">
-      <p><b>你的分數：</b>${score} / 70分</p>
-      <p>${text}</p>
-      <div class="info">
-        <p><b>玩家學到：</b>胡志明市的景點、美食、夜生活、機車文化、越南禮貌和旅遊特色。</p>
-      </div>
-      <button class="restart" onclick="cover()">重新開始</button>
-      <div class="footer">武紅銀 11457271</div>
-    </div>
-  </div>`;
+let title="",text="";
+if(score>=60){title="最佳結局";text="恭喜！你完成了胡志明市七日遊，也認識了越南美食、歷史建築、交通文化和當地生活。你已經成為「胡志明市旅遊達人」！";}
+else if(score>=40){title="普通結局";text="你已經了解胡志明市的大部分特色。下次可以再來探索更多景點和文化。";}
+else{title="挑戰結局";text="你還不太了解胡志明市。沒關係，請重新挑戰，發現更多越南文化吧！";}
+document.getElementById("app").innerHTML=`
+<div class="page"><div class="card">
+<h2>${title}</h2>${img("landmark")}
+<p><b>你的分數：</b>${score} / 70分</p>
+<p>${text}</p>
+<div class="info"><p><b>玩家學到：</b>胡志明市的景點、美食、夜生活、機車文化、越南禮貌和旅遊特色。</p></div>
+<button class="restart" onclick="cover()">重新開始</button>
+<div class="footer">武紅銀 11457271</div>
+</div></div>`;
 }
-
 cover();
 </script>
 </body>
